@@ -6,13 +6,9 @@
 
 echo "${CRON} bash /app/renew.sh" | crontab -
 
-chmod 0644 /etc/crontabs/renew
-
 for d in /app/hook/on_init/ /app/hook/on_renew_start/ /app/hook/on_renew_end/ ; do
 	[[ -d "$d" ]] || mkdir -p "$d"
 done
-
-mv /app/logrotate.d/renew.conf /etc/logrotate.d/renew.conf
 
 echo "initialized..."
 
