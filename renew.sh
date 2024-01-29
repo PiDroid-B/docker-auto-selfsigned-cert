@@ -22,7 +22,7 @@ openssl req \
 	-x509 \
 	-subj "${SUBJ}" \
 	-keyout "/app/certs/${CERT_COMMON_NAME}.key" \
-	-out "/app/certs/${CERT_COMMON_NAME}.cert"
+	-out "/app/certs/${CERT_COMMON_NAME}.crt"
 
 if [[ $(ls -A /app/hook/on_renew_end/ ) ]] ; then
   echo "### /app/hook/on_renew_end/ # hook(s) detected # start loop ###"
