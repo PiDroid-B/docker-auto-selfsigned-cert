@@ -8,7 +8,8 @@ ENV CERT_LOCALITY_NAME="Sun"
 ENV CERT_ORGANIZATION_NAME="My Home"
 ENV CERT_ORGANIZATION_UNIT="reverse proxy"
 ENV CERT_COMMON_NAME=""
-ENV HEALTHCHECK_DAYS=100
+# 2 days
+ENV HEALTHCHECK_MIN=2880
 
 RUN apk update && \
     apk upgrade --available && \
@@ -22,6 +23,6 @@ WORKDIR /app
 VOLUME /app/certs
 VOLUME /app/hook
 
-HEALTHCHECK --interval=1s --timeout=30s --retries=1 CMD bash healthcheck.sh || exit 1
+HEALTHCHECK --interval=10m --timeout=30s --retries=1 CMD bash healthcheck.sh || exit 1
 
 CMD [ "bash", "run.sh" ]

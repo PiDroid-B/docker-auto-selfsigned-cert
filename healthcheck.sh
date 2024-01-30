@@ -1,3 +1,3 @@
 #!/bin/bash
 
-openssl x509 -in "/app/certs/${CERT_COMMON_NAME}.cert" -checkend $(( HEALTHCHECK_DAYS * 86400 )) || exit 1
+[[ $(find /app/last -mmin -${HEALTHCHECK_MIN} -type f -print | wc -l) -eq 0 ]] && exit 1
