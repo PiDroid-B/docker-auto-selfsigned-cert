@@ -23,6 +23,6 @@ WORKDIR /app
 VOLUME /app/certs
 VOLUME /app/hook
 
-HEALTHCHECK --interval=10m --timeout=30s --retries=1 CMD bash healthcheck.sh || exit 1
+HEALTHCHECK --start-period=30s --interval=30s --timeout=30s --retries=1 CMD bash healthcheck.sh || exit 1
 
 CMD [ "bash", "run.sh" ]
